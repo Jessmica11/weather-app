@@ -43,11 +43,13 @@
     <main>
         <!-- Side Column -->
         <section class="side-container col-4">
-            <div class="row" id="search-bar">
+            <div class="row">
                 <div class="col-4">
                     <H2>Search for a City:</H2>
-                    <input class="user-city" placeholder="City"></input>
-                    <button type="button" class="btn btn-info">Search</button>
+                    <form class="search-form">
+                        <input class="user-city" placeholder="City" id="user-city"></input>
+                        <button type="button" class="btn btn-info" id="submit-button">Search</button>
+                    </form>
                 </div>
             </div>
             <div class="searched-cities">

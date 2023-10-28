@@ -9,15 +9,6 @@ header.bg-img {
     background-image: url(./cloud-background.jpeg);
 }
 
-.dashboard-header {
-    height: 100px;
-    color: #fff;
-    width: auto;
-    text-align: center;
-    margin: 2rem;
-    padding: 1rem;
-}
-
 section.side-container {
     display: flex;
     flex-direction: column;
@@ -35,4 +26,18 @@ section.side-container {
     margin: 1rem;
     padding: 1rem;
     align-content: space-evenly;
+}
+
+.dashboard-header {
+    height: 100px;
+    color: #fff;
+    width: auto;
+    text-align: center;
+    margin: 2rem;
+    padding: 1rem;
+}
+
+.modal {
+    display: none;
+    position: fixed;
 }
