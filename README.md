@@ -38,4 +38,8 @@ The following image shows the web application's appearance and functionality:
 
 ---
 
+## Steps
+
+I first set a specific parameter in the API to view the data object. I then broke down the pieces of the API url that I wanted to create at the end and worked backwards, realizing that I wanted the user input city to get concatinated into the API url.
+
 © 2023 edX Boot Camps LLC. Confidential and Proprietary. All Rights Reserved.
