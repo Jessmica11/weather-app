@@ -23,9 +23,14 @@ submitButton.addEventListener("click", handleUserSubmit);
 // prevent form from running then immediately clearing
 function handleUserSubmit(event) {
   event.preventDefault();
+
+  var submitButton = document.getElementById("submit-button")
+  //submitButton.addEventListener("click", handleUserSubmit);
+
     var userCity = document.querySelector(".user-city").value;
-    var formEl = document.querySelector(".search-form")
+   // var formEl = document.querySelector(".search-form")
     var currentQueryURL = currentApiURL + userCity + appID + apiKey;
+
     fetch(currentQueryURL)
     .then(function (response) {
     return response.json();
@@ -33,51 +38,35 @@ function handleUserSubmit(event) {
     .then(function (data) {
     console.log("For City: " + userCity + "," + " USA");
 
-    var weatherIcon = data.weather[0].icon
-    var temperature = data.main.temp
-    var wind = data.wind.speed
-    var humidity = data.main.humidity
+    document.getElementById("city-name").innerHTML = userCity
+    let temperature = data.main.temp
+    document.getElementById("temperature").innerHTML = "Temp: " + temperature
+    let windSpeed = data.wind.speed
+    document.getElementById("wind").innerHTML = "Wind: " + windSpeed + " MPH"
+    let humidityPercent = data.main.humidity
+    document.getElementById("humidity").innerHTML = "Humidity: " + humidityPercent + "%"
 
-    function displayCurrentWeather(data){
-      document.getElementById("city-name").innerText = userCity
-      document.getElementById("icon").innerText = weatherIcon
-      document.getElementById("temperature").innerText = temperature
-      document.getElementById("wind").innerText = wind + " MPH"
-      document.getElementById("humidity").innerText = humidity + "%"
+    // To print API data variables onto page areas
+    /*function displayCurrentWeather(data){
 
-    }
+      document.getElementById("city-name").innerHTML = userCity
+      document.getElementById("icon").innerHTML = weatherIcon
+      document.getElementById("temperature").innerHTML = temperature
+      document.getElementById("wind").innerHTML = windSpeed + " MPH"
+      document.getElementById("humidity").innerHTML = humidityPercent + "%"
 
-    console.log(temperature, wind, humidity, weatherIcon);
+    }*/
+
+    console.log(temperature, windSpeed, humidityPercent);
   });
     //console.log(currentQueryURL.main.temp);
-}
+
 
   function userSubmit() {
     this.fetchUserSubmit(document.querySelector("#submit-button").value);
   }
 
-  /*fetch(currentQueryURL)
-    .then(function (response) {
-    return response.json();
-    })
-    .then(function (data) {
-    console.log("For City: " + userCity + "," + "USA");
-    console.log(data);
-  });
-
-  // I want to be able to pull multiple pieces of data and create an object (?)
-    var weatherIcon = response.data.weather[0].icon
-    var temperature = response.data.main.temp
-    var wind = response.data.wind.speed
-    var humidity = reseponse.data.main.humidity
-
-  /*function getWeatherData(){
-    
-    
-    const temperature = {
-      response.data.main.temp
-    }
-
+  /* To print API data variables onto page areas
     function displayCurrentWeather(data){
       document.getElementById("city-name").innerText = userCity
       document.getElementById("icon").innerText = weatherIcon
@@ -86,3 +75,8 @@ function handleUserSubmit(event) {
       document.getElementById("humidity").innerText = "Humidity: " + humidity + "%"
 
     }*/
+
+    const node = document.createElement("img");
+    document.getElementById("icon").appendChild(node);
+
+  }
