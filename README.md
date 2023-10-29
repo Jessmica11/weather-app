@@ -1,6 +1,7 @@
 # Weather App
 
-GitHub page: 'https://jessmica11.github.io/weather-app/'
+Since there's an error with the openweather API and GitHub pages,
+it's best to view the html file in your browser tab
 
 ![demo of the weather app](./assets/weather-app-demo.gif)
 
