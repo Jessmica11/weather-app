@@ -38,9 +38,9 @@ function handleUserSubmit(event) {
     .then(function (data) {
     console.log("For City: " + userCity + "," + " USA");
 
-    document.getElementById("city-name").innerHTML = userCity
+    document.getElementById("city-name").innerHTML = "Current Weather In: " + userCity + ", USA"
     let temperature = data.main.temp
-    document.getElementById("temperature").innerHTML = "Temp: " + temperature
+    document.getElementById("temperature").innerHTML = "Temp: " + temperature + "°F"
     let windSpeed = data.wind.speed
     document.getElementById("wind").innerHTML = "Wind: " + windSpeed + " MPH"
     let humidityPercent = data.main.humidity
