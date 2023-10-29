@@ -3,7 +3,6 @@ main {
     flex-wrap: nowrap;
 }
 
-
 header.bg-img {
     /* The image used */
     background-image: url(./cloud-background.jpeg);
@@ -37,7 +36,3 @@ section.side-container {
     padding: 1rem;
 }
 
-.modal {
-    display: none;
-    position: fixed;
-}
