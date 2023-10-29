@@ -8,7 +8,7 @@ var today = dayjs();
 $('#date').text(today.format("(MM/DD/YYYY)"));
 
 //to call Current Weather API
-var currentApiURL = "http://api.openweathermap.org/data/2.5/weather?q="
+var currentApiURL = "https://api.openweathermap.org/data/2.5/weather?q="
 var appID = "&units=imperial&appid="
 var apiKey = "ab11508788fb351f936a398833feadf7"
 
