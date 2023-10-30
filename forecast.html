@@ -28,31 +28,14 @@
                 <H2>Search for a City:</H2>
                 <form class="search-form">
                     <input class="user-city" placeholder="City" id="user-city"></input>
-                    <button type="button" class="btn btn-primary" id="submit-button">Search</button>
-                    <button onclick="changePage()" type="button" class="btn btn-info" id="forecast-button">See 5-Day Forecast</button>
+                    <button type="button" class="btn btn-info" id="forecast-button">See 5-Day Forecast</button>
                 </form>
             </div>
-            <!-- Current Weather block -->
-            <div class="weather-data">
-                <div class="current-weather" id="current-weather">
-                    <div class="city-current">
-                        <h3 id="city-name">Current Weather In: </h3>
-                        <p id="clock"></p>
-                        <h3 id="date"></h3>
-                    </div>
-
-                    <!-- local storage items -->
-                    <div class="stored-searches">
-                        <button class="searched-cities"></button>
-                    </div>
-
-                    <!-- Data to be appended to this area-->
-                    <ul style="list-style-type:none;">
-                        <li id="temperature">Temp: </li>
-                        <li id="wind">Wind: </li>
-                        <li id="humidity">Humidity: </li>
-                    </ul>
-                </div>
+            <!-- 5-Day Forecast block -->
+            <!-- Data to be appended to this area-->
+            <div style="list-style-type:none;">
+                <h3 id="city-name">5-Day Forecast: </h3>
+            <!-- JS CreateHTML info *should* go under here -->
             </div>
         </div>
 
@@ -67,7 +50,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
-    <script src="./assets/script.js"></script>
+    <script src="./assets/forecast.js"></script>
 </body>
 
 </html>

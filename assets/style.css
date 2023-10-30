@@ -38,6 +38,11 @@ section.side-container {
     padding: 2rem;
 }
 
+#clock {
+    font-size: 1.5rem;
+    align-content: center;
+}
+
 .current-weather {
     display: flex;
     flex-direction: column;
@@ -50,7 +55,7 @@ section.side-container {
 }
 
 .weather-data {
-    display: flex;
+    display: hidden;
     align-content: center;
     width: 100%;
     margin: 1rem;

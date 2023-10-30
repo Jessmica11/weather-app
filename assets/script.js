@@ -3,9 +3,9 @@
 
 // global variables
 
-// dayjs formatting
+/* dayjs formatting
 var today = dayjs();
-$('#date').text(today.format("(MM/DD/YYYY)"));
+$('#date').text(today.format("(MM/DD/YYYY)"));*/
 
 //to call Current Weather API
 var currentApiURL = "https://api.openweathermap.org/data/2.5/weather?q="
@@ -37,6 +37,7 @@ function handleUserSubmit(event) {
     })
     .then(function (data) {
     console.log("For City: " + userCity + "," + " USA");
+    //let pastSearch = 
 
     document.getElementById("city-name").innerHTML = "Current Weather In: " + userCity + ", USA"
     let temperature = data.main.temp
@@ -46,37 +47,16 @@ function handleUserSubmit(event) {
     let humidityPercent = data.main.humidity
     document.getElementById("humidity").innerHTML = "Humidity: " + humidityPercent + "%"
 
-    // To print API data variables onto page areas
-    /*function displayCurrentWeather(data){
-
-      document.getElementById("city-name").innerHTML = userCity
-      document.getElementById("icon").innerHTML = weatherIcon
-      document.getElementById("temperature").innerHTML = temperature
-      document.getElementById("wind").innerHTML = windSpeed + " MPH"
-      document.getElementById("humidity").innerHTML = humidityPercent + "%"
-
-    }*/
-
     console.log(temperature, windSpeed, humidityPercent);
   });
     //console.log(currentQueryURL.main.temp);
 
 
   function userSubmit() {
-    this.fetchUserSubmit(document.querySelector("#submit-button").value);
+    this.fetchUserSubmit(document.querySelector("#user-city").value);
   }
-
-  /* To print API data variables onto page areas
-    function displayCurrentWeather(data){
-      document.getElementById("city-name").innerText = userCity
-      document.getElementById("icon").innerText = weatherIcon
-      document.getElementById("temperature").innerText = "Temp: " + temperature
-      document.getElementById("wind").innerText = "Wind: " + wind + " MPH"
-      document.getElementById("humidity").innerText = "Humidity: " + humidity + "%"
-
-    }*/
-
-    const node = document.createElement("img");
-    document.getElementById("icon").appendChild(node);
-
+  /*function changePage() {
+  location.replace("./assets/forecast.js");
+}*/
+    
   }
