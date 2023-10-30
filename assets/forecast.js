@@ -1,6 +1,7 @@
 // target api url example
-// http://api.openweathermap.org/data/2.5/forecast?q=Charlotte&units=imperial&appid=ab11508788fb351f936a398833feadf7
+// http://api.openweathermap.org/data/2.5/forecast/daily?q=Charlotte&units=imperial&appid=ab11508788fb351f936a398833feadf7
 
+//api.openweathermap.org/data/2.5/forecast/daily?q={city name}&cnt={cnt}&appid={API key}
 // global variables
 
 // dayjs formatting
@@ -8,11 +9,12 @@ var today = dayjs();
 $('#date').text(today.format("(MM/DD/YYYY) "));
 
 //to call Current Weather API
-var forecastApiURL = "http://api.openweathermap.org/data/2.5/forecast?q="
-var foreAppID = "&units=imperial&appid="
-var apiKey = "ab11508788fb351f936a398833feadf7"
+var forecastApiURL = "api.openweathermap.org/data/2.5/forecast/daily?q="
+var forecastAppID = "&cnt=5&units=imperial&appid="
+// generated a different api key for this call
+var apiKey = "e8521634193aceebc8a35f31401bdf0e"
 
-local variables
+//local variables
 var userCity = document.querySelector(".user-city").value;
 // var formEl = document.querySelector(".search-form")
 
@@ -23,31 +25,30 @@ forecastButton.addEventListener("click", handleUserSubmit);
 // prevent form from running then immediately clearing
 function handleUserSubmit(event) {
   event.preventDefault();
-
-  var submitButton = document.getElementById("forecast-button")
+  
+  var forecastButton = document.getElementById("forecast-button")
   //submitButton.addEventListener("click", handleUserSubmit);
 
     var userCity = document.querySelector(".user-city").value;
    // var formEl = document.querySelector(".search-form")
-    var forecastQueryURL = forecastApiURL + userCity + foreAppID + apiKey;
+    var forecastQueryURL = forecastApiURL + userCity + forecastAppID + apiKey;
 
-    fetch(forecastQueryURL)
-    .then(function (response) {
-    return response.json();
+function weatherForecast(city) {
+    fetch(forecastQueryURL)  
+    .then(function(resp) {
+        return resp.json()
     })
-    .then(function (data) {
-    console.log("For City: " + userCity + "," + " USA");
-    //let pastSearch = 
-
-  function printResults(resultObj) {
-  console.log(resultObj);
-
+    .then(function(data) {
+        console.log(userCity + ", USA" +(JSON.stringify(data)));
+        drawWeather(data);
+    })
+    function printResults(data) {
+  console.log(data);
+  }
   // loop through each array of forecast API data
-var forecastDays = resultObj.list[i]
+  var forecastDays = data.list[i]
 
-  for (var i = 0; i < forecastDays.length; i += 1) {
-    var eachDay = forecastDays[i];
-    var projectDate = dayjs(fore.date);
+  for (var i = 0; i < forecastDays.length; i ++) {
 
   // To create day cards for results
   // variables we'll need:
@@ -66,86 +67,81 @@ var forecastDays = resultObj.list[i]
   forecastDiv.append(dayCard);
 
   var dateEl = document.createElement('h3');
-  dateEl.textContent = resultObj.list.dt_txt;
+  dateEl.textContent = data.list[i].dt_txt;
 
   var tempContentEl = document.createElement('p');
   bodyContentEl.innerHTML =
-    '<strong>Date:</strong> ' + resultObj.list.main.temp + '<br/>';
+    '<strong>Date:</strong> ' + data.list[i].main.temp + '<br/>';
 
   var windContentEl = document.createElement('p');
   bodyContentEl.innerHTML =
-    '<strong>Date:</strong> ' + resultObj.list.wind.speed + '<br/>';
+    '<strong>Date:</strong> ' + data.list[i].wind.speed + '<br/>';
     
   var humidityContentEl = document.createElement('p');
   bodyContentEl.innerHTML =
-    '<strong>Date:</strong> ' + resultObj.list.main.humidity + '<br/>';  
-
-  if (resultObj.subject) {
-    bodyContentEl.innerHTML +=
-      '<strong>Subjects:</strong> ' + resultObj.subject.join(', ') + '<br/>';
-  } else {
-    bodyContentEl.innerHTML +=
-      '<strong>Subjects:</strong> No subject for this entry.';
-  }
-
-  if (resultObj.description) {
-    bodyContentEl.innerHTML +=
-      '<strong>Description:</strong> ' + resultObj.description[0];
-  } else {
-    bodyContentEl.innerHTML +=
-      '<strong>Description:</strong>  No description for this entry.';
-  }
+    '<strong>Date:</strong> ' + data.list[i].main.humidity + '<br/>';  
 
   dayCard.append(dateEl, tempContentEl, windContentEl, humidityContentEl);
 
   forecastDiv.append(dayCard);
 }
 
-  console.log(dateEl, tempContentEl, windContentEl, humidityContentEl);
-  };
-    //console.log(currentQueryURL.main.temp);
 
-  /*function searchApi(query, format) {
-  var locQueryUrl = 'https://www.loc.gov/search/?fo=json';
-
-  if (format) {
-    locQueryUrl = 'https://www.loc.gov/' + format + '/?fo=json';
+/*
   }
 
-  locQueryUrl = locQueryUrl + '&q=' + query;
+  function printResults(data) {
+  console.log(data);
+  }
+  // loop through each array of forecast API data
+  var forecastDays = data.list[i]
 
-  fetch(locQueryUrl)
-    .then(function (response) {
-      if (!response.ok) {
-        throw response.json();
-      }
+  for (var i = 0; i < forecastDays.length; i ++) {
 
-      return response.json();
-    })
-    .then(function (locRes) {
-      // write query to page so user knows what they are viewing
-      resultTextEl.textContent = locRes.search.query;
+  // To create day cards for results
+  // variables we'll need:
+  // list[i].dt_txt (date)
+  // list[i].main.temp (temperature)
+  // list[i].wind.speed (wind speed)
+  // list[i].main.humidity (humidity)
 
-      console.log(locRes);
+  var projectDate = dayjs(forecastDays.dt_txt);
 
-      if (!locRes.results.length) {
-        console.log('No results found!');
-        resultContentEl.innerHTML = '<h3>No results found, search again!</h3>';
-      } else {
-        resultContentEl.textContent = '';
-        for (var i = 0; i < locRes.results.length; i++) {
-          printResults(locRes.results[i]);
-        }
-      }
-    })
-    .catch(function (error) {
-      console.error(error);
-    });
-}*/
+  var forecastDiv = document.createElement('div');
+  forecastDiv.classList.add('card', 'bg-light', 'text-dark', 'mb-3', 'p-3');
 
-function handleSearchFormSubmit(event) {
+  var dayCard = document.createElement('div');
+  dayCard.classList.add('card-body');
+  forecastDiv.append(dayCard);
+
+  var dateEl = document.createElement('h3');
+  dateEl.textContent = data.list[i].dt_txt;
+
+  var tempContentEl = document.createElement('p');
+  bodyContentEl.innerHTML =
+    '<strong>Date:</strong> ' + data.list[i].main.temp + '<br/>';
+
+  var windContentEl = document.createElement('p');
+  bodyContentEl.innerHTML =
+    '<strong>Date:</strong> ' + data.list[i].wind.speed + '<br/>';
+    
+  var humidityContentEl = document.createElement('p');
+  bodyContentEl.innerHTML =
+    '<strong>Date:</strong> ' + data.list[i].main.humidity + '<br/>';  
+
+  dayCard.append(dateEl, tempContentEl, windContentEl, humidityContentEl);
+
+  forecastDiv.append(dayCard);
+}
+
+  //console.log(userCity, tempContentEl, windContentEl, humidityContentEl);
+
+    //console.log(currentQueryURL.main.temp);
+
+
+  function handleSearchFormSubmit(event) {
   event.preventDefault();
-
+  }
   var searchInputVal = document.querySelector('#search-input').value;
   var formatInputVal = document.querySelector('#format-input').value;
 
@@ -153,8 +149,5 @@ function handleSearchFormSubmit(event) {
     console.error('You need a search input value!');
     return;
   }
-
-  searchApi(searchInputVal, formatInputVal);
-}
-
-searchFormEl.addEventListener('submit', handleSearchFormSubmit);
+}*/
+};

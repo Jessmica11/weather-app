@@ -1,0 +1,96 @@
+
+main {
+    display: flex;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin: 3rem;
+}
+
+h1
+h2 
+h3 {
+    width: auto;
+    text-align: center;
+}
+
+p {
+    display: table-row;
+    font-size: 1.5rem;
+}
+
+
+li {
+    font-size: large;
+    align-content: space-evenly;
+    margin: 2rem;
+    display: block;
+}
+
+header.bg-img {
+    /* The image used */
+    background-image: url(./cloud-background.jpeg);
+}
+
+section.side-container {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    margin: 1.5rem;
+    padding: 2rem;
+}
+
+#clock {
+    font-size: 1.5rem;
+    align-content: center;
+}
+
+.current-weather {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    width: 100%
+}
+
+.stored-searches {
+    display: none;
+}
+
+.weather-data {
+    display: hidden;
+    align-content: center;
+    width: 100%;
+    margin: 1rem;
+    padding: 1rem;
+    border: .25rem solid #000;
+}
+
+.dashboard-header {
+    height: 100px;
+    color: #fff;
+    width: auto;
+    text-align: center;
+    margin: 2rem;
+    padding: 1rem;
+}
+
+.city-current {
+    align-content: center;
+    text-align: center;
+    margin: 1rem;
+}
+
+#city-name {
+    width:100%;
+    display: inline-block;
+    align-content: center;
+    text-align: center;
+    margin: .5rem;
+    font-weight: bolder;
+}
+
+#date {
+    width: 100%;
+    display: inline-block;
+    align-content: center;
+    text-align: center;
+    margin: .5rem;
+}

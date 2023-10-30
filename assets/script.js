@@ -55,8 +55,12 @@ function handleUserSubmit(event) {
   function userSubmit() {
     this.fetchUserSubmit(document.querySelector("#user-city").value);
   }
-  /*function changePage() {
+
+  var forecastButton = document.getElementById("forecast-button")
+  forecastButton.addEventListener("click", changePage);
+
+  function changePage() {   
   location.replace("./assets/forecast.js");
-}*/
+}
     
   }
